@@ -38,11 +38,12 @@ const JS = (app: Application): void => {
 
             var start = process.hrtime();
             const result = findPrime(num);
-            var elapsed = process.hrtime(start)[1] / 1000000;
+            var elapsedSeconds = process.hrtime(start)[0];
+            var elapsedNano = process.hrtime(start)[1] / 1000000;
 
             res.send({
                 prime: result,
-                time: process.hrtime(start)[0] + 's and ' + elapsed.toFixed(3) + 'ms',
+                time: `${elapsedSeconds}s and ${elapsedNano.toFixed(3)}ms`,
             });
         })
     );
